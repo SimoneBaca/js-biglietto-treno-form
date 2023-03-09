@@ -9,53 +9,78 @@ va applicato uno sconto del 40% per gli over 65.*/
 
 
 
-let bottone = document.getElementById('calcolo');
+const buttonSend = document.getElementById('send');
+const buttonDelete = document.getElementById('delete');
 
-const calcolatrice = function(){
-    //variabili
-    const prezzoKm = 0.21;
-    const minorenni = 17;
-    const over = 65;
+const fullName = document.getElementById('full-name');
+const userKm = document.getElementById('kms');
+const userAgeRange = document.getElementById('age-range');
+let ticketType = document.getElementById('ticket-type');
+const ticketCarriage = document.getElementById('ticket-carriage');
+const ticketCode = document.getElementById('ticket-code');
+let ticketCost = document.getElementById('ticket-cost');
+const ticketForm = document.getElementById('your-ticket');
 
-    let km = document.getElementById('Km').value;
-    let eta = document.getElementById('eta').value;
+buttonSend.addEventListener('click', function () {
+    if (fullName.value !== '' && userKm.value !== '' && userAgeRange.value !== '') {
 
-    let totaleKm = km * prezzoKm;
-    let costo = Math.ceil(totaleKm)
-    let costoTotale = costo.toFixed(2)
+        const fullNameValue = fullName.value.trim();
+        console.log(fullNameValue);
+
+        const userKmValue = parseInt(userKm.value);
+        console.log(`${userKmValue}km`);
+
+        const userAgeRangeValue = userAgeRange.value;
+        console.log(userAgeRangeValue);
+
+        let ticketName = document.getElementById('ticket-fullname');
+        ticketName.innerHTML = fullNameValue;
+
+        const randomCarriage = Math.floor(Math.random() * 9) + 1;
+        ticketCarriage.innerText = randomCarriage;
+
+        const randomCode = Math.floor(Math.random() * 9999) + 1;
+        ticketCode.innerText = randomCode;
+
+        let costoTotale = userKm.value * 0.21;
+        let prezzoScontato = 0;
+        let tipoUtente = userAgeRange.value;
 
 
+        switch (tipoUtente) {
+            case 'underage':
+                prezzoScontato = .20;
+                costoTotale = (costoTotale - (costoTotale * prezzoScontato)).toFixed(2);
+                console.log(`Il prezzo del biglietto per i minorenni è di ${costoTotale}€`);
+                ticketType.innerText = 'Sconto minorile';
+                break;
+            case 'over65':
+                prezzoScontato = .40;
+                costoTotale = (costoTotale - (costoTotale * prezzoScontato)).toFixed(2);
+                console.log(`Il prezzo del biglietto per gli over 65 è di ${costoTotale}€`);
+                ticketType.innerText = 'Sconto signorile';
+                break;
+            case 'overage':
+                costoTotale = costoTotale.toFixed(2);
+                console.log(`Il prezzo del biglietto senza sconti è di ${costoTotale}€`);
+                ticketType.innerText = 'Biglietto standard';
+        }
 
-//Minorenni
-    if(eta <= minorenni){
-        let scontoMinorenni = costoTotale / 100 * 20;
-        let totaleMinorenni = costoTotale - scontoMinorenni;
-                
-        document.getElementById('eta').innerHTML = eta
-        document.getElementById('scontoViaggio').innerHTML = scontoMinorenni
+        ticketCost.innerHTML = costoTotale + '€';
 
-        document.getElementById('costoViaggio').innerHTML = totaleMinorenni
-        
-    
-//Over 
-    } else if( eta >= over){
-        let scontoOver = costoTotale / 100 * 40 ;
-        let totaleOver = costoTotale - scontoOver;
-        console.log(totaleOver)
-        document.getElementById('eta').innerHTML = eta
-        document.getElementById('scontoViaggio').innerHTML = scontoOver
+        ticketForm.classList.add('visible');
 
-        document.getElementById('costoViaggio').innerHTML = totaleOver
+        fullName.value = '';
+        userKm.value = '';
+        userAgeRange.value = '';
 
-//Ne Minorenni ne Over
-    }else {
-        document.getElementById('eta').innerHTML = eta
-        document.getElementById('scontoViaggio').innerHTML =
-        `
-        Nessun sconto
-        `        
-        document.getElementById('costoViaggio').innerHTML = costoTotale
     }
 
-}
-bottone.addEventListener('click', calcolatrice);
+
+});
+
+buttonDelete.addEventListener('click', function () {
+    fullName.value = '';
+    userKm.value = '';
+    userAgeRange.value = '';
+})

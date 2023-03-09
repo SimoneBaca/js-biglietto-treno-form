@@ -10,18 +10,76 @@
     <title>Tickets!</title>
 </head>
 <body>
-    <input type="" value=""  id="name" placeholder="Come ti chiami?">
-    <input type="number" value="0"  id="Km" placeholder="Quanti kilometri dista la meta?">
-    <input type="number" value="0"  id="eta" placeholder="Quanti anni hai?">
-    <button id="calcolo">Scopri il prezzo del biglietto</button>
-    <div>
-        <h4> Prezzo:</h4>
-        <p> Sconto : <span id="scontoViaggio"></span></p>
-        <p> Costo del viaggio : <span id="costoViaggio"></span></p>
-    </div>
-    <!-- Javascript -->
-    <script src="./main.js"></script>
+    
+    <div class="container-fluid bg-red p-3">
 
-   
+        <h2 class="d-flex justify-content-center">CALCOLA IL PREZZO DEL TUO BIGLIETTO</h2>
+        <section
+            id="calcolate">
+            <div class="d-flex flex-column py-2">
+                <label for="full-name" class="text-red fs-2 text-center">Nome Cognome</label>
+                <input class="rounded border-danger border-2" id="full-name" type="text" name="full-name">
+            </div>
+            <div class="d-flex flex-column py-2">
+                <label for="kms" class="text-red fs-2 text-center">Km da percorrere</label>
+                <input class="rounded border-danger border-2" id="kms" type="number" name="kms">
+            </div>
+            <div class="d-flex flex-column py-2">
+                <label for="age-range" class="text-red fs-2 text-center">Fascia d'età</label>
+                <select class="rounded border-danger border-2 text-red" name="age-range" id="age-range">
+                    <option></option>
+                    <option id="underage" value="underage">Minorenne</option>
+                    <option id="overage" value="overage">Maggiorenne</option>
+                    <option id="over65" value="over65">Over 65</option>
+                </select>
+            </div>
+        </section>
+
+        <div id="buttons" class='mb-5'>
+            <div class="d-grid gap-2 col-6 mx-auto d-flex flex-row justify-content-center">
+                <button id="send" class="btn btn-light text-danger shadow-sm p-2 mb-1 bg-body rounded fw-bold"
+                    type="button">Genera</button>
+                <button id="delete" class="btn btn-light text-danger shadow-sm p-2 mb-1 bg-body rounded fw-bold"
+                    type="button">Annulla</button>
+            </div>
+        </div>
+
+        <hr class="bg-light mb-5 container">
+        <h2 class=" d-flex justify-content-center ">IL TUO BIGLIETTO</h2>
+        <section id="your-ticket"
+            class="flex-row justify-content-around  p-3 my-4 flex-column">
+
+            <div class="row">
+                <div class="col-4">
+                    <h3>DETTAGLIO PASSEGGERI</h3>
+                    <div>
+                        <h5>NOME PASSEGGERO</h5>
+                        <div class="h6" id="ticket-fullname"></div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div id="your-ticket-result" class="d-flex justify-content-between px-1">
+                        <div>
+                            <div class="fw-bold">OFFERTA</div>
+                            <div id="ticket-type"></div>
+                        </div>
+                        <div>
+                            <div class="fw-bold">CARROZZA</div>
+                            <div id="ticket-carriage"></div>
+                        </div>
+                        <div>
+                            <div class="fw-bold">CODICE CP</div>
+                            <div id="ticket-code"></div>
+                        </div>
+                        <div>
+                            <div class="fw-bold">COSTO BIGLIETTO</div>
+                            <div id="ticket-cost"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+   <script src="./main.js"></script>
 </body>
 </html>

@@ -23,7 +23,6 @@ alert("prendi la macchina la prossima volta!")
 
 const buttonSend = document.getElementById('send');
 const buttonDelete = document.getElementById('delete');
-
 const fullName = document.getElementById('full-name');
 const userKm = document.getElementById('kms');
 const userAgeRange = document.getElementById('age-range');

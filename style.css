@@ -3,3 +3,39 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    font-family: sans-serif;
+    
+}
+
+/* Utilities */
+
+input,select {
+    width: 100%;
+}
+
+button{
+    width: 30%;
+}
+.bg-red{
+    background-color: #DC3545;
+}
+
+#calcolate{
+    display: flex;
+    flex-direction: column;
+}
+
+#your-ticket-result{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+#your-ticket{
+    display: none;
+}
+
+#your-ticket.visible{
+    display: flex;
+}
